@@ -2,14 +2,16 @@
 """
 from __future__ import print_function
 
+import sys
+
 from docutils.nodes import SparseNodeVisitor
 
 
 class ShowRaw(SparseNodeVisitor):
 
     def visit_Text(self, node):
-        print('rawsource is', node.rawsource, ';')
-        print('astext() is', node.astext(), ';')
+        if node.rawsource == '':
+            sys.exit(10)
 
     def unknown_visit(self, node):
         pass
